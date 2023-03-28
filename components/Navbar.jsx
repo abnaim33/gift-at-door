@@ -4,26 +4,16 @@ import { IoMdMenu, IoMdClose } from 'react-icons/io'
 import { useTheme } from 'next-themes'
 import Link from 'next/link'
 import { CiLocationOn } from 'react-icons/ci'
-const Navbar_Items = [
-    {
-        label: "Home",
-        page: "home"
-    },
-    {
-        label: "About",
-        page: "about"
-    },
-    {
-        label: "Projects",
-        page: "projects"
-    }
-]
+import { DataContext } from '../store/GlobalState'
 
 const Navbar = () => {
 
     const { systemTheme, theme, setTheme } = useTheme()
     const currentTheme = theme === 'system' ? systemTheme : theme
     const [navbar, setNavbar] = useState(false)
+
+    const { state, dispatch } = useContext(DataContext)
+    const { auth } = state
 
 
     return (
@@ -58,43 +48,85 @@ const Navbar = () => {
 ${navbar ? 'block' : 'hidden'}`}>
                         <div className='items-center space-y-4 md:space-y-0 justify-center text-sm flex flex-col md:flex-row md:space-x-6 '>
 
+                            {
+                                auth.user?.name ?
+                                    <Link href="/profile"
+                                        className={
+                                            "capitalize block lg:inline-block text-neutral-900 hover:text-neutral-500 dark:text-neutral-100"
+                                        }
 
-                            <Link
+                                        onClick={() => setNavbar(!navbar)}>
+                                        {auth.user.name}
+                                    </Link> :
+                                    <Link
 
-                                href='/signin'
-                                className={
-                                    "block lg:inline-block text-neutral-900 hover:text-neutral-500 dark:text-neutral-100"
-                                }
+                                        href='/signin'
+                                        className={
+                                            "block lg:inline-block text-neutral-900 hover:text-neutral-500 dark:text-neutral-100"
+                                        }
 
-                                onClick={() => setNavbar(!navbar)}
-                            >
-                                Sign in / Register
-                            </Link>
+                                        onClick={() => setNavbar(!navbar)}
+                                    >
+                                        Sign in / Register
+                                    </Link>
+                            }
 
-                            <Link
+                            {
+                                auth.user?.role === 'admin' ?
+                                    <>
+                                        <Link
 
-                                href="/about"
-                                className={
-                                    "block lg:inline-block text-neutral-900 hover:text-neutral-500 dark:text-neutral-100"
-                                }
+                                            href="/create"
+                                            className={
+                                                "block lg:inline-block text-neutral-900 hover:text-neutral-500 dark:text-neutral-100"
+                                            }
 
-                                onClick={() => setNavbar(!navbar)}
-                            >
-                                About Us
-                            </Link>
+                                            onClick={() => setNavbar(!navbar)}
+                                        >
+                                            Create
+                                        </Link>
 
-                            <Link
+                                        <Link
 
-                                href="/track-orders"
-                                className={
-                                    "block lg:inline-block text-neutral-900 hover:text-neutral-500 dark:text-neutral-100"
-                                }
+                                            href="/users"
+                                            className={
+                                                "block lg:inline-block text-neutral-900 hover:text-neutral-500 dark:text-neutral-100"
+                                            }
 
-                                onClick={() => setNavbar(!navbar)}
-                            >
-                                Track Orders
-                            </Link>
+                                            onClick={() => setNavbar(!navbar)}
+                                        >
+                                            Users
+                                        </Link>
 
+                                    </> :
+                                    <>
+                                        <Link
+
+                                            href="/about"
+                                            className={
+                                                "block lg:inline-block text-neutral-900 hover:text-neutral-500 dark:text-neutral-100"
+                                            }
+
+                                            onClick={() => setNavbar(!navbar)}
+                                        >
+                                            About Us
+                                        </Link>
+
+                                        <Link
+
+                                            href="/track-orders"
+                                            className={
+                                                "block lg:inline-block text-neutral-900 hover:text-neutral-500 dark:text-neutral-100"
+                                            }
+
+                                            onClick={() => setNavbar(!navbar)}
+                                        >
+                                            Track Orders
+                                        </Link>
+
+                                    </>
+
+                            }
                             {
                                 currentTheme === 'dark' ? (
 

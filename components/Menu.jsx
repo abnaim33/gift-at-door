@@ -1,13 +1,14 @@
 import Link from 'next/link'
 import React from 'react'
 import { Carousel } from 'react-responsive-carousel';
+
 const menu_items = [
     {
-        name: 'Personalised Gifts',
+        name: 'Personalized Gifts',
         path: "/"
     },
     {
-        name: 'Home & Living',
+        name: 'Cosmetics',
         path: "/"
     },
     {
