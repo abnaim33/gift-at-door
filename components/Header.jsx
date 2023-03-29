@@ -77,7 +77,7 @@ const Header = () => {
                     </div>
                     <div>
                         <h1 className='text-gray-600 text-sm'>Free standard shipping</h1>
-                        <h1>on all orders over $99</h1>
+                        <h1>on all orders over TK.1999</h1>
                     </div>
                 </div>
 

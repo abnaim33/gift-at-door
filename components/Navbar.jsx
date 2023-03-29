@@ -85,7 +85,17 @@ ${navbar ? 'block' : 'hidden'}`}>
                                         >
                                             Create
                                         </Link>
+                                        <Link
 
+                                            href="/categories"
+                                            className={
+                                                "block lg:inline-block text-neutral-900 hover:text-neutral-500 dark:text-neutral-100"
+                                            }
+
+                                            onClick={() => setNavbar(!navbar)}
+                                        >
+                                            Categories
+                                        </Link>
                                         <Link
 
                                             href="/users"

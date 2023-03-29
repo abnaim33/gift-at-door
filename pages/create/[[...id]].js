@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import { useState, useContext, useEffect } from 'react'
 import { DataContext } from '../../store/GlobalState'
-import { imageUpload } from '../../utils/imageUpload'
 import { postData, getData, putData } from '../../utils/fetchData'
 import { useRouter } from 'next/router'
 import { toast } from 'react-toastify'
@@ -19,7 +18,6 @@ const ProductsManager = () => {
     const [product, setProduct] = useState(initialState)
     const { title, price, inStock, description, content, category, images } = product
 
-    const [imagesUrl, setImagesUrl] = useState('')
 
     const { state, dispatch } = useContext(DataContext)
     const { categories, auth } = state
@@ -32,84 +30,43 @@ const ProductsManager = () => {
         if (id) {
             setOnEdit(true)
             getData(`product/${id}`).then(res => {
-                console.log(res, 'from create page')
+
                 setProduct(res.product)
-                setImagesUrl(res.product.images)
+
                 // setProduct({ ...product, images: res.product.images })
+
             })
         } else {
             setOnEdit(false)
             setProduct(initialState)
-            setImagesUrl([])
+
         }
     }, [id])
 
     const handleChangeInput = e => {
         const { name, value } = e.target
         setProduct({ ...product, [name]: value })
-        // dispatch({ type: 'NOTIFY', payload: {} })
+
     }
 
-    // const handleUploadInput = e => {
-    //     dispatch({ type: 'NOTIFY', payload: {} })
-    //     let newImages = []
-    //     let num = 0
-    //     let err = ''
-    //     const files = [...e.target.files]
-
-    //     if (files.length === 0)
-    //         return dispatch({ type: 'NOTIFY', payload: { error: 'Files does not exist.' } })
-
-    //     files.forEach(file => {
-
-
-    //         if (file.type !== 'image/jpeg' && file.type !== 'image/png')
-    //             return err = 'Image format is incorrect.'
-
-    //         num += 1;
-    //         if (num <= 5) newImages.push(file)
-    //         return newImages;
-    //     })
-
-    //     if (err) dispatch({ type: 'NOTIFY', payload: { error: err } })
-
-    //     const imgCount = images.length
-    //     if (imgCount + newImages.length > 5)
-    //         return dispatch({ type: 'NOTIFY', payload: { error: 'Select up to 5 images.' } })
-    //     setImagesUrl([...imagesUrl, ...newImages])
-    //     console.log('new image', newImages)
-    // }
-
-
-
-
-    const deleteImage = index => {
-        const newArr = [...images]
-        newArr.splice(index, 1)
-        setImagesUrl(newArr)
-    }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         if (auth.user.role !== 'admin')
-            return dispatch({ type: 'NOTIFY', payload: { error: 'Authentication is not valid.' } })
+            return toast("Authentication is not valid", { type: 'error' })
 
         if (!title || !price || !inStock || !description || !content || category === 'all')
-            return dispatch({ type: 'NOTIFY', payload: { error: 'Please add all the fields.' } })
+            return toast('Please add all the fields.', { type: 'error' })
 
 
-        // dispatch({ type: 'NOTIFY', payload: { loading: true } })
+
 
         toast("Loading",
             {
                 type: 'info'
             })
 
-        // let media = []
-        // const imgNewURL = imagesUrl.filter(img => !img.url)
-        // const imgOldURL = imagesUrl.filter(img => img.url)
 
-        // if (imgNewURL.length > 0) media = await imageUpload(imgNewURL)
 
         let res;
         if (onEdit) {
@@ -123,7 +80,7 @@ const ProductsManager = () => {
             return toast("Product created successfully")
         }
 
-        // return dispatch({ type: 'NOTIFY', payload: { success: res.msg } })
+
 
     }
 
@@ -132,36 +89,39 @@ const ProductsManager = () => {
             <Head>
                 <title>Products Manager</title>
             </Head>
-            <form className="row" onSubmit={handleSubmit}>
-                <div className="col-md-6">
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <div className='flex items-center justify-start'>
+                        <h1>Title :</h1>
 
-                    <input type="text" name="title" value={title}
-                        placeholder="Title" className="d-block my-4 w-100 p-2"
-                        onChange={handleChangeInput} />
+                        <input type="text" name="title" value={title}
+                            placeholder="Title" className="ml-4 outline-none my-4 w-100 p-2 border "
+                            onChange={handleChangeInput} />
+                    </div>
 
-                    <div className="row">
-                        <div className="col-sm-6">
+                    <div className="flex justify-between">
+                        <div className="w-1/3">
                             <label htmlFor="price">Price</label>
                             <input type="number" name="price" value={price}
-                                placeholder="Price" className="d-block w-100 p-2"
+                                placeholder="Price" className=" w-full p-2"
                                 onChange={handleChangeInput} />
                         </div>
 
-                        <div className="col-sm-6">
+                        <div className="w-1/3">
                             <label htmlFor="price">In Stock</label>
                             <input type="number" name="inStock" value={inStock}
-                                placeholder="inStock" className="d-block w-100 p-2"
+                                placeholder="inStock" className="w-full p-2 ml-4"
                                 onChange={handleChangeInput} />
                         </div>
                     </div>
 
                     <textarea name="description" id="description" cols="30" rows="4"
                         placeholder="Description" onChange={handleChangeInput}
-                        className="d-block my-4 w-100 p-2" value={description} />
+                        className="d-block my-4 w-100 p-2 border border-gray-300" value={description} />
 
-                    <textarea name="content" id="content" cols="30" rows="6"
+                    <textarea name="content" id="content" cols="30" rows="4"
                         placeholder="Content" onChange={handleChangeInput}
-                        className="d-block my-4 w-100 p-2" value={content} />
+                        className="d-block my-4 w-100 p-2  border border-gray-300 md:ml-5" value={content} />
 
                     <div className="input-group-prepend px-0 my-2">
                         <select name="category" id="category" value={category}
@@ -177,36 +137,33 @@ const ProductsManager = () => {
                         </select>
                     </div>
 
-                    <button type="submit" className="btn btn-info my-2 px-4">
+                    <button type="submit" className="bg-black dark:bg-white py-1 text-white dark:text-black my-2 px-6 rounded">
                         {onEdit ? 'Update' : 'Create'}
                     </button>
 
                 </div>
 
-                <div className="col-md-6 my-4">
-                    <div className="input-group mb-3">
-                        <div className="input-group-prepend">
-                            <button className="input-group-text">Upload</button>
-                        </div>
-                        <div className="custom-file border rounded">
-                            <input type="text" className="custom-file-input"
-                                name="images" value={images}
-                                onChange={handleChangeInput} multiple />
-                        </div>
+                <div className=" my-4">
+                    <div className=" mb-3">
 
+                        <h1 className='text-2xl mb-5'>Image url :</h1>
+
+                        <input type="text" className="px-2 py-1 border-2 rounded border-gray-400 w-full"
+                            name="images" value={images}
+                            onChange={handleChangeInput} multiple
+                            placeholder="Enter image url"
+                        />
                     </div>
 
                     <div className="flex img-up mx-0  min-w-[100px] min-h-[100px]">
-                        {/* {
-                            images.map((img, index) => (
-                                <div key={index} className="file_img w-[200px] my-1 ">
-                           
-                                    <img src={img.url}
-                                        alt="" className="w-full rounded" />
-                                    <span onClick={() => deleteImage(index)}>X</span>
-                                </div>
-                            ))
-                        } */}
+
+                        <div className=" w-[200px] my-1 ">
+
+                            <img src={images}
+                                alt="" className="w-full rounded" />
+
+                        </div>
+
                     </div>
 
 

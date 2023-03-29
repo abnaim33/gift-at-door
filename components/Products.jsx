@@ -47,9 +47,13 @@ const Products = (props) => {
 
             <div className='flex items-center justify-between flex-wrap'>
 
-                {newProducts.map((product, index) => (
-                    <ProductCard key={index} product={product} />
-                ))}
+                {
+                    newProducts.length === 0 ?
+                        <h2 className='text-4xl text-red-700 mt-10'>No products Found</h2>
+                        :
+                        newProducts.map((product, index) => (
+                            <ProductCard key={index} product={product} />
+                        ))}
             </div>
 
         </div>

@@ -159,13 +159,13 @@ const Profile = () => {
                     <div className="flex">
                         <label htmlFor="email">Email: </label>
                         <input type="text" name="email" defaultValue={auth.user.email}
-                            className="md:w-full w-[400px] ml-5" disabled={true} />
+                            className="md:w-full w-[400px] ml-5 px-2 py-1" disabled={true} />
                     </div>
 
                     <div className="form-group">
                         <label htmlFor="password">New Password: </label>
                         <input type="password" name="password" value={password}
-                            className="ml-3"
+                            className="ml-3 px-2 py-1"
                             placeholder="Your new password"
 
                             onChange={handleChange} />
@@ -174,7 +174,7 @@ const Profile = () => {
                     <div className="form-group">
                         <label htmlFor="cf_password">Confirm Password: </label>
                         <input type="password" name="cf_password" value={cf_password}
-                            className="ml-3"
+                            className="ml-3 px-2 py-1"
                             placeholder="Confirm new password" onChange={handleChange} />
                     </div>
 
@@ -185,16 +185,16 @@ const Profile = () => {
                     </button>
                 </div>
 
-                <div className="md:w-2/3 w-full bg-gray-200 p-5">
+                <div className="md:w-2/3 w-full bg-gray-200 dark:bg-gray-400 p-5">
                     <h3 className="text-2xl mb-5">Orders</h3>
                     {
                         orders.length === 0 ? <h1 className='text-xl'>You have no orders</h1>
                             :
-                            <div className="my-3 table-responsive">
-                                <table className="table-bordered table-hover w-100 text-uppercase"
+                            <div className="my-3">
+                                <table className=" w-100 text-uppercase border border-gray-200 dark:border-gray-700"
                                     style={{ minWidth: '600px', cursor: 'pointer' }}>
                                     <thead className="bg-light font-weight-bold bg-indigo-600
-                             border border-gray-200">
+                             border border-gray-200 dark:border-gray-700">
                                         <tr>
                                             <td className="p-2 border-x border-gray-500">id</td>
                                             <td className="p-2 border-r border-gray-500">date</td>
@@ -208,17 +208,17 @@ const Profile = () => {
                                         {
                                             orders.map(order => (
                                                 <tr key={order._id} className='border border-gray-400'>
-                                                    <td className="p-2  border-r border-gray-500 ">
+                                                    <td className="p-2  border-r border-gray-500 dark:border-gray-700">
                                                         <Link href={`/order/${order._id}`}>
                                                             <h1>{order._id}</h1>
                                                         </Link>
 
                                                     </td>
-                                                    <td className="p-2 border-r border-gray-500">
+                                                    <td className="p-2 border-r border-gray-500  dark:border-gray-700">
                                                         {new Date(order.createdAt).toLocaleDateString()}
                                                     </td>
-                                                    <td className="p-2 border-r border-gray-500">${order.total}</td>
-                                                    <td className="p-2  border-r border-gray-500">
+                                                    <td className="p-2 border-r border-gray-500  dark:border-gray-700">${order.total}</td>
+                                                    <td className="p-2  border-r border-gray-500  dark:border-gray-700">
                                                         {
                                                             order.delivered
                                                                 // ? <i className="fas fa-check text-success"></i>
@@ -251,7 +251,7 @@ const Profile = () => {
 
             <div>
                 <button className='bg-indigo-600 text-white px-8
-                 font-semibold py-1 rounded mt-5'
+                 font-semibold py-1 rounded my-5'
                     onClick={handleLogout}>LogOut</button>
             </div>
 

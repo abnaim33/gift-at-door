@@ -23,25 +23,16 @@ const DetailProduct = (props) => {
             </Head>
 
             <div className="w-full md:w-1/2">
-                <img src={product.images[tab].url} alt={product.images[tab].url}
+                <img src={product.images} alt={product.images}
                     className="d-block img-thumbnail rounded mt-4 w-full md:w-2/3"
                     style={{ height: '350px' }} />
 
-                <div className="flex mx-0 cursor-pointer mt-2 w-full"  >
 
-                    {product.images.map((img, index) => (
-                        <img key={index} src={img.url} alt={img.url}
-                            className={`img-thumbnail rounded h-[80px] w-full md:w-1/3 ${isActive(index)}`}
-
-                            onClick={() => setTab(index)} />
-                    ))}
-
-                </div>
             </div>
 
             <div className="w-full md:w-1/2 mt-3 md:mt-0">
                 <h2 className="">{product.title}</h2>
-                <h5 className="text-danger">${product.price}</h5>
+                <h5 className="text-danger">Tk. {product.price}</h5>
 
                 <div className="row mx-0 d-flex justify-content-between">
                     {

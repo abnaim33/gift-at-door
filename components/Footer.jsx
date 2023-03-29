@@ -55,7 +55,7 @@ const Footer = () => {
 
                         {
                             information_items.map((item, index) => (
-                                <Link key={index} href={item.name} className='text-gray-500 capitalize'>
+                                <Link key={index} href={item.name} className='text-gray-500 capitalize text-sm'>
                                     {item.name}
                                 </Link>
                             ))
@@ -70,7 +70,7 @@ const Footer = () => {
 
                         {
                             services_items.map((item, index) => (
-                                <Link key={index} href={item.name} className='text-gray-500 capitalize'>
+                                <Link key={index} href={item.name} className='text-gray-500 capitalize text-sm'>
                                     {item.name}
                                 </Link>
                             ))

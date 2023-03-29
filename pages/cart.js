@@ -32,8 +32,12 @@ const Cart = () => {
 
             setPriceTotal(res)
 
-            setTotal(priceTotal + 60)
 
+            if (priceTotal > 1000) {
+                setTotal(priceTotal)
+            } else {
+                setTotal(priceTotal + 60)
+            }
         }
 
         getTotal()
@@ -175,15 +179,15 @@ const Cart = () => {
                                     onChange={e => setMobile(e.target.value)} />
                             </form>
 
-                            <h3 className='mb-5'>Shipping: <span className="text-green-600">Tk: 60</span></h3>
+                            <h3 className='mb-5'>Shipping: <span className="text-green-600">Tk: {priceTotal > 1999 ? 0 : 60}</span></h3>
                             <h3 className='mb-5'>Total: <span className="text-green-600">TK: {total}</span></h3>
 
-                            {/* <Link href={auth.user ? '' : '/signin'} className='mt-5'> */}
-                            <a className="bg-black cursor-pointer text-white
+                            <Link href={auth.user ? '' : '/signin'} className='mt-5'>
+                                <h1 className="bg-black cursor-pointer text-white
                              px-3 py-2 rounded"
-                                onClick={handleOrder}
-                            >Submit Order</a>
-                            {/* </Link> */}
+                                    onClick={handleOrder}
+                                >Submit Order</h1>
+                            </Link>
                         </div>
 
                     </div>}
