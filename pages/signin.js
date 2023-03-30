@@ -56,7 +56,7 @@ const Signin = () => {
 
             localStorage.setItem('firstLogin', true)
 
-            return router.push('/')
+
 
 
         } else {

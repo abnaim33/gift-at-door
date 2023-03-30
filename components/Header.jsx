@@ -96,7 +96,7 @@ const Header = () => {
                         <Link href="/cart">
 
                             <h1 className='text-gray-600 text-sm'>Cart: {cart.length} items</h1>
-                            <h1>${total}</h1>
+                            <h1>Tk. {total}</h1>
                         </Link>
 
                     </div>
