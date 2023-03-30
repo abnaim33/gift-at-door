@@ -17,7 +17,7 @@ export default function Home(props) {
   return (
     <div>
 
-      {/* just have to implement redux */}
+      {/*  have to add search facility in header.js and rating system*/}
 
       <Head>
         <title>
@@ -25,8 +25,7 @@ export default function Home(props) {
         </title>
       </Head>
 
-      {/* <Navbar /> */}
-      {/* <Header /> */}
+
       <Menu />
 
       <Products products={products} />

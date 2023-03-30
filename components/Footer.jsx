@@ -2,6 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 
 import { AiOutlineArrowDown, AiOutlineCopyright, AiFillLinkedin, AiFillFacebook, AiFillInstagram } from 'react-icons/ai'
+import { toast } from 'react-toastify'
 
 const information_items = [
     {
@@ -55,7 +56,7 @@ const Footer = () => {
 
                         {
                             information_items.map((item, index) => (
-                                <Link key={index} href={item.name} className='text-gray-500 capitalize text-sm'>
+                                <Link key={index} href={item.path} className='text-gray-500 capitalize text-sm'>
                                     {item.name}
                                 </Link>
                             ))
@@ -70,7 +71,7 @@ const Footer = () => {
 
                         {
                             services_items.map((item, index) => (
-                                <Link key={index} href={item.name} className='text-gray-500 capitalize text-sm'>
+                                <Link key={index} href={item.path} className='text-gray-500 capitalize text-sm'>
                                     {item.name}
                                 </Link>
                             ))
@@ -84,13 +85,12 @@ const Footer = () => {
 
                     <p className='text-gray-500 capitalize my-2'>For News & Special Offers</p>
 
-                    <div className='flex flex-col'>
+                    <form className='flex flex-col' onSubmit={() => toast('subscribe to newsletter successfully')}>
 
-                        <input type="text" placeholder='Enter your email address'
+                        <input type="email" required placeholder='Enter your email address'
                             className='outline-none border-2 border-gray-300 rounded p-2 text-neutral-500' />
-                        <button className='w-[100px] bg-pink-700 px-3 py-1 mt-3 rounded text-white'>Submit</button>
-                    </div>
-
+                        <button className='w-[100px] bg-pink-700 px-3 py-1 mt-3 rounded text-white' type="submit" >Submit</button>
+                    </form>
 
                 </div>
 

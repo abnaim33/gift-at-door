@@ -3,9 +3,6 @@ import { useState, useContext, useEffect } from 'react'
 import { DataContext } from '../store/GlobalState'
 import Link from 'next/link'
 import Cookie from 'js-cookie'
-// import valid from '../utils/valid'
-// import { patchData } from '../utils/fetchData'
-
 import { imageUpload } from '../utils/imageUpload'
 import valid from '../utils/valid'
 import { patchData } from '../utils/fetchData'
@@ -49,12 +46,13 @@ const Profile = () => {
     }
 
     const updatePassword = () => {
-        dispatch({ type: 'NOTIFY', payload: { loading: true } })
+
+
+        toast('Loading', { type: 'info' })
         patchData('user/resetPassword', { password }, auth.token)
             .then(res => {
                 console.log(res, 'from update password')
-                if (res.err) return dispatch({ type: 'NOTIFY', payload: { error: res.err } })
-
+                if (res.err) return toast(res.err, { type: 'error' })
                 setData({
                     password: '',
                     cf_password: ''
@@ -66,19 +64,7 @@ const Profile = () => {
             })
     }
 
-    const changeAvatar = (e) => {
-        const file = e.target.files[0]
-        if (!file)
-            return dispatch({ type: 'NOTIFY', payload: { error: 'File does not exist.' } })
 
-        // if(file.size > 1024 * 1024) //1mb
-        //     return dispatch({type: 'NOTIFY', payload: {error: 'The largest image size is 1mb.'}})
-
-        if (file.type !== "image/jpeg" && file.type !== "image/png") //1mb
-            return dispatch({ type: 'NOTIFY', payload: { error: 'Image format is incorrect.' } })
-
-        setData({ ...data, avatar: file })
-    }
 
     const updateInfor = async () => {
         let media;
@@ -110,7 +96,7 @@ const Profile = () => {
         Cookie.remove('refreshtoken', { path: 'api/auth/accessToken' })
         localStorage.removeItem('firstLogin')
         dispatch({ type: 'AUTH', payload: {} })
-        // dispatch({ type: 'NOTIFY', payload: { success: 'Logged out!' } })
+
 
         toast('Logged Out', {
             type: 'success'

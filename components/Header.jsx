@@ -77,7 +77,7 @@ const Header = () => {
                     </div>
                     <div>
                         <h1 className='text-gray-600 text-sm'>Free standard shipping</h1>
-                        <h1>on all orders over TK.1999</h1>
+                        <h1>on all orders over TK.2999</h1>
                     </div>
                 </div>
 
@@ -127,7 +127,7 @@ z`}>
                                 <Link
                                     href="/shop"
                                     className={
-                                        `block lg:inline-block hover:text-neutral-200 text-neutral-700 px-6 py-2 rounded
+                                        `block lg:inline-block hover:text-neutral-600 text-neutral-700 dark:text-gray-400 px-6 py-2 rounded
                                         ${router.route === '/shop' ? 'bg-indigo-700 !text-neutral-100 hover:text-neutral-200 ' : ''}`
                                     }
                                 >
@@ -137,7 +137,7 @@ z`}>
                                 <Link
                                     href="/blog"
                                     className={
-                                        `block lg:inline-block hover:text-neutral-600 text-neutral-700 px-6 py-2 rounded
+                                        `block lg:inline-block hover:text-neutral-600 text-neutral-700 dark:text-gray-400 px-6 py-2 rounded
                                         ${router.route === '/blog' ? 'bg-indigo-700 !text-neutral-100 hover:text-neutral-200 ' : ''}`
                                     }
                                 >
@@ -148,7 +148,7 @@ z`}>
                                 <Link
                                     href="/our-story"
                                     className={
-                                        `block lg:inline-block hover:text-neutral-600 text-neutral-700 px-6 py-2 rounded
+                                        `block lg:inline-block hover:text-neutral-600 text-neutral-700 dark:text-gray-400  px-6 py-2 rounded
                                         ${router.route === '/our-story' ? 'bg-indigo-700 !text-neutral-100 hover:text-neutral-200 ' : ''}`
                                     }
                                 >
@@ -161,7 +161,7 @@ z`}>
 
                     <div>
 
-                        <div className={router.route === '/' || router.route === '/shop' ? ` flex items-center justify-between py-3` : `hidden`} >
+                        {/* <div className={router.route === '/' || router.route === '/shop' ? ` flex items-center justify-between py-3` : `hidden`} >
                             <div className='  flex items-center'>
                                 <div> <AiOutlineSearch size={25} className='text-gray-600' /></div>
                                 <input type="text" placeholder='Search...' className='outline-none ml-2 bg-transparent' />
@@ -169,7 +169,7 @@ z`}>
 
 
 
-                        </div>
+                        </div> */}
 
 
                     </div>

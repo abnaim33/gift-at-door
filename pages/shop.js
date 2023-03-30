@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
+import Footer from '../components/Footer'
 import Header from '../components/Header'
 import Menu from '../components/Menu'
 import Navbar from '../components/Navbar'
@@ -22,9 +23,10 @@ const Shop = (props) => {
                 </title>
             </Head>
 
-            {/* <Navbar /> */}
-            {/* <Header /> */}
+
             <Products products={products} />
+
+            <Footer />
         </div>
     )
 }
