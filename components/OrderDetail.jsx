@@ -46,9 +46,7 @@ const OrderDetail = ({ orderDetail, state, dispatch }) => {
 
                 return dispatch({ type: 'NOTIFY', payload: { success: res.msg } })
             })
-        // This function shows a transaction success message to your buyer.
 
-        console.log('done')
     }
 
     if (!auth.user) return null;

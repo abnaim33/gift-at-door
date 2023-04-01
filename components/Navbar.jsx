@@ -67,7 +67,7 @@ ${navbar ? 'block' : 'hidden'}`}>
 
                                         onClick={() => setNavbar(!navbar)}
                                     >
-                                        Sign in / Register
+                                        Log in / Register
                                     </Link>
                             }
 

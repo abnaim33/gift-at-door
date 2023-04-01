@@ -9,6 +9,9 @@ import { useEffect, useState } from "react";
 import { getData } from "../utils/fetchData";
 export default function Home(props) {
   const [products, setProducts] = useState(props.products)
+
+
+
   useEffect(() => {
     setProducts(props.products)
 

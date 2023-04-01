@@ -118,7 +118,7 @@ z`}>
                                     href='/'
                                     className={
                                         `block lg:inline-block hover:text-neutral-200  px-6 py-2 rounded 
-                                        ${router.route === '/' ? 'bg-indigo-700 text-neutral-100 ' : ''}`
+                                        ${router.route === '/' ? 'bg-[#ffc379] !text-neutral-700 hover:text-neutral-400  ' : ''}`
                                     }
                                 >
                                     Home
@@ -128,7 +128,7 @@ z`}>
                                     href="/shop"
                                     className={
                                         `block lg:inline-block hover:text-neutral-600 text-neutral-700 dark:text-gray-400 px-6 py-2 rounded
-                                        ${router.route === '/shop' ? 'bg-indigo-700 !text-neutral-100 hover:text-neutral-200 ' : ''}`
+                                        ${router.route === '/shop' ? 'bg-[#ffc379]  hover:text-neutral-400 ' : ''}`
                                     }
                                 >
                                     Shop
@@ -138,7 +138,7 @@ z`}>
                                     href="/blog"
                                     className={
                                         `block lg:inline-block hover:text-neutral-600 text-neutral-700 dark:text-gray-400 px-6 py-2 rounded
-                                        ${router.route === '/blog' ? 'bg-indigo-700 !text-neutral-100 hover:text-neutral-200 ' : ''}`
+                                        ${router.route === '/blog' ? 'bg-[#ffc379] hover:text-neutral-400' : ''}`
                                     }
                                 >
                                     Blog
@@ -149,7 +149,7 @@ z`}>
                                     href="/our-story"
                                     className={
                                         `block lg:inline-block hover:text-neutral-600 text-neutral-700 dark:text-gray-400  px-6 py-2 rounded
-                                        ${router.route === '/our-story' ? 'bg-indigo-700 !text-neutral-100 hover:text-neutral-200 ' : ''}`
+                                        ${router.route === '/our-story' ? 'bg-[#ffc379] hover:text-neutral-400' : ''}`
                                     }
                                 >
                                     Our Story

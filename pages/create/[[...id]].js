@@ -33,7 +33,7 @@ const ProductsManager = () => {
 
                 setProduct(res.product)
 
-                // setProduct({ ...product, images: res.product.images })
+
 
             })
         } else {

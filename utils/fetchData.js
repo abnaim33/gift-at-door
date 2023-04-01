@@ -1,5 +1,5 @@
 const baseUrl = process.env.BASE_URL
-
+// https://gift-at-door.vercel.app/
 export const getData = async (url, token) => {
     const res = await fetch(`https://gift-at-door.vercel.app/api/${url}`, {
         method: 'GET',

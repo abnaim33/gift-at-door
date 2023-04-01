@@ -69,7 +69,7 @@ const Cart = () => {
 
     const handleOrder = async () => {
 
-        if (!auth.user) return router.push('/signin?cart')
+        if (!auth.user) return router.push('/signin?from=cart')
 
         if (!address || !mobile) return setError('Please fill all the fields')
 
@@ -87,11 +87,7 @@ const Cart = () => {
             return toast('The product is out of stock or the quantity is insufficient.', {
                 type: 'error'
             })
-            // dispatch({
-            //     type: 'NOTIFY', payload: {
-            //         error: 'The product is out of stock or the quantity is insufficient.'
-            //     }
-            // })
+
         }
         postData('order', { address, mobile, cart, total }, auth.token)
             .then(res => {
@@ -106,7 +102,7 @@ const Cart = () => {
                     user: auth.user
                 }
                 dispatch({ type: 'ADD_ORDERS', payload: [...orders, newOrder] })
-                // dispatch({ type: 'NOTIFY', payload: { success: res.msg } })
+
 
                 toast(res.msg, {
                     type: 'success'
